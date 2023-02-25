@@ -22,3 +22,5 @@ Tasklist
 - [ ] Create and add a Manifest.json file to my code
 - [ ] Use a google developer account to upload my project to the Chrome extension store - https://www.freecodecamp.org/news/building-chrome-extension/ 
 - [ ] Publish my project to the chrome web store for other cybersecurity enthusiasts to test, use and play with  - https://developer.chrome.com/docs/webstore/register/ 
+
+Watch this space!
