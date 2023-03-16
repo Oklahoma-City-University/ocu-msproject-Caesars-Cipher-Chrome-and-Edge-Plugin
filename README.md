@@ -5,14 +5,14 @@ In this chromium browser project I will implement a caesar cipher that takes in 
 
 Tasklist
 
-- [ ] On paper, I will use a shift cipher to encrypt and decrypt a short message to get a feel for how this cipher works.
-- [ ] Highlight how I will use conditionals and flow controls to convert a string into a number.
-- [ ] Brush up my knowledge on how I will implement my knowledge of strings, arrays, and hashes for encrypting and decrypting messages.
-- [ ] Develop an algorithm for this procedure that works for input text and shift value.
-- [ ] Create and initialize (set to blank) three variables to store inputText, shiftValue, and outputText.
-- [ ] Ask the user to enter a plaintext message to be encoded. 
-- [ ] Set the inputText variable to the answer from the user.
-- [ ] Ask the user to enter a shift value for the shift cipher. If their answer is a number; Set the shiftValue variable to their answer.
+- [x] On paper, I will use a shift cipher to encrypt and decrypt a short message to get a feel for how this cipher works.
+- [x] Highlight how I will use conditionals and flow controls to convert a string into a number.
+- [x] Brush up my knowledge on how I will implement my knowledge of strings, arrays, and hashes for encrypting and decrypting messages.
+- [x] Develop an algorithm for this procedure that works for input text and shift value.
+- [x] Create and initialize (set to blank) three variables to store inputText, shiftValue, and outputText.
+- [x] Ask the user to enter a plaintext message to be encoded. 
+- [x] Set the inputText variable to the answer from the user.
+- [x] Ask the user to enter a shift value for the shift cipher. If their answer is a number; Set the shiftValue variable to their answer.
 - [ ] Ask the user if they wish to encode or decode.
 - [ ] Then call a custom procedure to encrypt or decrypt the data. 
 - [ ] Check that my code works as expected.
