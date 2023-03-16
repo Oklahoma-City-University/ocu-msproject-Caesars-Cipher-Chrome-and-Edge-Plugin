@@ -1,0 +1,20 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "manifest_version": 3,
+    "name": "Caesars Cipher",
+    "description": "Caesars Cipher Tool for Chrome Edge Browsers",
+    "version": "1.0",
+    "author": "Jake Adebayo, OCU MSc Project 2023",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Caesar Cipher",
+        "default_icon": {
+            "16": "images/caesar.png",
+            "24": "images/caesar.png",
+            "32": "images/caesar.png",
+            "48": "images/caesar.png",
+            "128": "images/caesar.png"
+        }
+    }
+}
