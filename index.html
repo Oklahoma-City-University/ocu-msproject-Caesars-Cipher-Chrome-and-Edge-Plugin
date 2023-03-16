@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caesar Dressing">
+  <title>Caesars Cipher Tool for Chrome Edge Browsers </title>
+  <style>
+    h {
+      text-shadow: 0px 0px 10px white;
+      font-size: 32px;
+      color: white;
+      font-family: "Caesar Dressing";
+    }
+    body {
+      text-align: center;
+      width: 250px;
+      height: 360px;
+      background-image: linear-gradient(to bottom right, rgb(60, 60, 60), rgb(15, 15, 15));
+    }
+    textarea {
+      width: 200px;
+      height: 80px;
+      text-align: left;
+      border-radius: 8px;
+      font-family: "Times New Roman";
+      font-size: 16px;
+    }
+    .input1 {
+      margin-top: 10px;
+    }
+    .input2 {
+      margin-top: 10px;
+    }
+    button {
+      box-shadow: 0 5px black;
+      cursor: pointer;
+      margin-bottom: 5px;
+      border-radius: 8px;
+      font-family: "Caesar Dressing";
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: lightgray;
+    }
+    button:active {
+      background-color: lightgray;
+      box-shadow: 0 3px black;
+      transform: translateY(2px);
+    }
+    .button1 {
+      width: 100px;
+      height: 30px;
+    }
+    .button2 {
+      width: 150px;
+      height: 30px;
+      margin-top: 5px;
+    }
+    select {
+      font-family: "Times New Roman";
+      margin: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h>Caesar Cipher</h>
+  <textarea class = "input input1" id = "inputField" type="text" placeholder = "Enter Text Here"></textarea>
+  
+  <select name="numbers" id="numbers">
+   <optgroup label="Key Value">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
+    <option value="20">20</option>
+    <option value="21">21</option>
+    <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+    <option value="25">25</option>
+   </optgroup>
+  </select>
+  <div>
+    <button class = "button button1" type = "submit" id = "encryptButton">Encrypt</button>
+    <button class = "button button1" type = "submit" id = "decryptButton">Decrypt</button>
+  </div>
+  <textarea class = "input input2" id = "outputField" type="text" placeholder = "Output"></textarea>
+  <button class = "button button2" type = "submit" id = "copyToClipboardButton">Copy to Clipboard</button>
+  
+  <script src="script.js"></script>   
+</body>
+
+</html>
