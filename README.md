@@ -21,8 +21,9 @@ Tasklist
 - [x] Package my code as a chrome extension
 - [x] Create and add a Manifest.json file to my code
 - [x] Use a google developer account to upload my project to the Chrome extension store - https://www.freecodecamp.org/news/building-chrome-extension/ 
-- [x] Publish my project to the chrome web store for other cybersecurity enthusiasts to test, use and play with  - https://developer.chrome.com/docs/webstore/register/ 
+- [x] Publish my project to the chrome web store for other cybersecurity enthusiasts to test, use and play with  - https://chrome.google.com/webstore/detail/caesars-cipher/fdodgpljcddhaecalplkpeijoadfpccg/ 
 - [x] Publish my project to the Resource Group  (CaesarsCipher-S01-Jake) i created on OKCU Azure portal fore students (the free tier subscription for students) for other cybersecurity enthusiasts to test, use and play with...it is currently publicly accessible at https://gray-forest-042c17010.3.azurestaticapps.net. 
+[x] Publish a forked multi-encryption on to the Resource Group  (Multiple Ciphers) i created on OKCU Azure portal fore students (the free tier subscription for students) for other cybersecurity enthusiasts to test, use and play with...it is currently publicly accessible at https://proud-island-0146f9410.3.azurestaticapps.net. 
 
 
-Wish me luck in my presentation tommorrow!
+Wish me luck in my presentation today!
