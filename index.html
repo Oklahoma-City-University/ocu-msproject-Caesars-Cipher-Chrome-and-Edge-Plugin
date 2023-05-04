@@ -1,123 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jake's Caesar Cipher Tool</title>
+  <title>My Encryption Tool</title>
   <style>
-    
-body {
-  background-color: #00274C;
-  color: #FFFFFF;
-  font-family: Arial, sans-serif;
-  text-align: center; /* align content to center */
-}
-
-/* style for the rest of the elements */
-h1 {
-  font-size: 36px;
-  margin-top: 40px;
-}
-
-p {
-  font-size: 20px;
-}
-
-label {
-  font-size: 20px;
-}
-
-textarea, input[type="number"] {
-  font-size: 16px;
-  padding: 8px;
-  border-radius: 5px;
-  border: none;
-  background-color: #FFFFFF;
-  color: #000000;
-  margin-bottom: 16px;
-}
-
-button {
-  font-size: 20px;
-  padding: 12px 24px;
-  border-radius: 5px;
-  border: none;
-  background-color: #2C2C2C;
-  color: #FFFFFF;
-  margin-right: 8px;
-}
-
-button:hover {
-  background-color: #707070;
-}
-
-#encryptButton {
-  background-color: #0C2340;
-}
-
-#decryptButton {
-  background-color: #006DFF;
-}
-
-#copyToClipboardButton {
-  background-color: #666666;
-}
-
-#clearButton {
-  background-color: #FDB913;
-  color: #000000;
-}
-
-#outputField {
-  margin-top: 16px;
-}
- 
-    /* CSS for the footer */
-footer {
-  background-color: #2C2C2C;
-  color: #FFFFFF;
-  padding: 20px;
-  text-align: center;
-  margin-top: 184px; /* add top margin for spacing */
-}
-
-footer a {
-  color: #FDB913; /* set link color to a distinct yellow */
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
+    /* CSS styles here */
   </style>
 </head>
 <body>
-  <h1>Caesar Cipher Tool</h1>
-  <p>Enter the message you want to encrypt below:</p>
-  <textarea id="inputField" rows="4" cols="50"></textarea>
-  <br>
-  <label for="numbers">Enter the encryption key (0-25):</label>
-  <input type="number" id="numbers" min="0" max="25" value="0">
-  <br>
+  <h1>My Encryption Tool</h1>
+  <p>Enter your message below and choose an encryption algorithm and a key to encrypt it.</p>
+  
+  <label for="inputField">Enter your message:</label><br>
+  <textarea id="inputField" rows="10"></textarea><br>
+
+  <label for="algorithm">Choose an encryption algorithm:</label>
+  <select id="algorithm">
+    <option value="caesar">Caesar cipher</option>
+    <option value="vigenere">Vigenère cipher</option>
+    <!-- add options for other algorithms here -->
+  </select><br>
+
+  <label for="key">Enter a key:</label>
+  <input type="text" id="key" value=""><br>
+
   <button id="encryptButton">Encrypt</button>
   <button id="decryptButton">Decrypt</button>
-  <button id="copyToClipboardButton">Copy to Clipboard</button>
+  <button id="copyToClipboardButton">Copy to clipboard</button>
   <button id="clearButton">Clear</button>
-  <br>
-  <p>Encrypted message:</p>
-  <textarea id="outputField" rows="4" cols="50" readonly></textarea>
+
+  <label for="outputField">Encrypted/decrypted message:</label><br>
+  <textarea id="outputField" rows="10"></textarea><br>
+
+  <footer>
+    <p>&copy; 2023 <a href="https://example.com/">Your Company Name</a>. All rights reserved. This is a project work for my MSc program at Oklahoma City University.</p>
+  </footer>
 
   <script>
-    function encrypt(key) {
+    function encryptCaesar(key) {
       let alphabet = 'abcdefghijklmnopqrstuvwxyz';
       let alphabetCAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
       let user_input = document.getElementById("inputField").value;
       let new_str = "";
-      
-      if (key < 0 || key > 25) {
-        alert("Invalid key. Please enter a number between 0 and 25.");
-        return;
-      }
 
       for (let i = 0; i < user_input.length; i++) {
         letter = user_input[i]
@@ -125,7 +49,7 @@ footer a:hover {
           new_str += alphabet[((alphabet.indexOf(letter) + Number(key)) % 26)];
         }
         else if (alphabetCAP.includes(letter)) {
-          new_str += alphabetCAP[((alphabetCAP.indexOf(letter) + key) % 26)];
+          new_str += alphabetCAP[((alphabetCAP.indexOf(letter) + Number(key)) % 26)];
         }
         else {
           new_str += letter;
@@ -134,31 +58,226 @@ footer a:hover {
       document.getElementById("outputField").value = new_str;
     }
 
-    function copyClipboard() {
-      navigator.clipboard.writeText(document.getElementById("output hereerrrrrrrrrField").value);
-      alert("Copied to clipboard!");
+    function encryptVigenere(key) {
+  let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  let alphabetCAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  let user_input = document.getElementById("inputField").value;
+  let new_str = "";
+  let keyword = key.toLowerCase();
+  let keywordIndex = 0;
+
+  for (let i = 0; i < user_input.length; i++) {
+    let letter = user_input[i];
+    let keywordLetter = keyword[keywordIndex % keyword.length];
+    let shift = alphabet.indexOf(keywordLetter);
+    keywordIndex++;
+
+    if (alphabet.includes(letter)) {
+      new_str += alphabet[((alphabet.indexOf(letter) + shift) % 26)];
     }
+    else if (alphabetCAP.includes(letter)) {
+      new_str += alphabetCAP[((alphabetCAP.indexOf(letter) + shift) % 26)];
+    }
+    else {
+      new_str += letter;
+    }
+  }
+  document.getElementById("outputField").value = new_str;
+}
 
-    document.getElementById("encryptButton").addEventListener("click", function() {
-      encrypt(Number(document.getElementById("numbers").value));
-    });
+function copyClipboard() {
+  navigator.clipboard.writeText(document.getElementById("outputField").value);
+}
 
-    document.getElementById("decryptButton").addEventListener("click", function() {
-      encrypt(26 - Number(document.getElementById("numbers").value));
-    });
+function clearFields() {
+  document.getElementById("inputField").value = "";
+  document.getElementById("outputField").value = "";
+}
 
-    document.getElementById("copyToClipboardButton").addEventListener("click", copyClipboard);
+document.getElementById("encryptButton").addEventListener("click", function() {
+  let algorithm = document.getElementById("algorithm").value;
+  let key = document.getElementById("key").value;
+  if (algorithm === "caesar") {
+    encryptCaesar(Number(key));
+  }
+  else if (algorithm === "vigenere") {
+    encryptVigenere(key);
+  }
+});
 
-    document.getElementById("clearButton").addEventListener("click", function() {
-      document.getElementById("inputField").value = "";
-      document.getElementById("outputField").value = "";
-      document.getElementById("numbers").value = "0";
-    });
-  </script>
-  <footer>
-  <p>&copy; 2023 <a href="https://github.com/Oklahoma-City-University/Caesars-Cipher-Tool-for-Chrome-and-Edge"> OCU on Github</a> and <a href="https://nootherjake.com"> @nootherjake</a>. All rights reserved. I created this project as a requirement for my computer science MSc program at Oklahoma City University.</p>
+document.getElementById("decryptButton").addEventListener("click", function() {
+  let algorithm = document.getElementById("algorithm").value;
+  let key = document.getElementById("key").value;
+  if (algorithm === "caesar") {
+    encryptCaesar(26 - Number(key));
+  }
+  else if (algorithm === "vigenere") {
+    encryptVigenere(key);
+  }
+  else {
+    alert("Decryption is not supported for this algorithm.");
+  }
+});
+
+document.getElementById("copyToClipboardButton").addEventListener("click", copyClipboard);
+
+document.getElementById("clearButton").addEventListener("click", clearFields);
+
+
+<footer>
+  <p>&copy; 2023 <a href="https://example.com/">Your Company Name</a>. All rights reserved. This is a project work for my MSc program at Oklahoma City University.</p>
 </footer>
+
+<script>
+  function encryptRailFence(key) {
+    let user_input = document.getElementById("inputField").value;
+    let new_str = "";
+    let fence = [];
+    for (let i = 0; i < key; i++) {
+      fence.push([]);
+    }
+    let rail = 0;
+    let change = 1;
+    for (let i = 0; i < user_input.length; i++) {
+      fence[rail].push(user_input[i]);
+      rail += change;
+      if (rail === key - 1 || rail === 0) {
+        change = -change;
+      }
+    }
+    for (let i = 0; i < key; i++) {
+      for (let j = 0; j < fence[i].length; j++) {
+        new_str += fence[i][j];
+      }
+    }
+    document.getElementById("outputField").value = new_str;
+  }
+
+  function encryptHill(key) {
+    let user_input = document.getElementById("inputField").value;
+    let new_str = "";
+    let n = Math.sqrt(key.length);
+    let mat = [];
+    let tmp = [];
+    for (let i = 0; i < key.length; i++) {
+      tmp.push(key.charCodeAt(i) - 97);
+      if (tmp.length === n) {
+        mat.push(tmp);
+        tmp = [];
+      }
+    }
+    let user_tmp = [];
+    for (let i = 0; i < user_input.length; i++) {
+      if (user_input.charCodeAt(i) < 97 || user_input.charCodeAt(i) > 122) {
+        continue;
+      }
+      user_tmp.push(user_input.charCodeAt(i) - 97);
+      if (user_tmp.length === n) {
+        let res = [];
+        for (let j = 0; j < n; j++) {
+          let sum = 0;
+          for (let k = 0; k < n; k++) {
+            sum += mat[j][k] * user_tmp[k];
+          }
+          res.push(String.fromCharCode((sum % 26) + 97));
+        }
+        new_str += res.join("");
+        user_tmp = [];
+      }
+    }
+    document.getElementById("outputField").value = new_str;
+  }
+
+  function encryptRSA(key) {
+    let user_input = document.getElementById("inputField").value;
+    let new_str = "";
+    let p = key[0];
+    let q = key[1];
+    let n = p * q;
+    let tot = (p - 1) * (q - 1);
+    let e = 2;
+    while (e < tot) {
+      if (gcd(e, tot) === 1) {
+        break;
+      }
+      e++;
+    }
+    let d = modInverse(e, tot);
+    for (let i = 0; i < user_input.length; i++) {
+      let c = user_input.charCodeAt(i);
+      let m = powMod(c, e, n);
+      new_str += String.fromCharCode(m);
+    }
+    document.getElementById("outputField").value = new_str;
+  }
+
+function gcd(a, b) {
+  if (b === 0) {
+    return a;
+  }
+  return gcd(b, a % b);
+}
+
+function modInverse(a, m) {
+  for (let i = 1; i < m; i++) {
+    if ((a * i) % m === 1) {
+      return i;
+    }
+  }
+  return 1;
+}
+
+function powMod(b, e, m) {
+  let res = 1;
+  while (e > 0) {
+    if (e % 2 === 1) {
+      res = (res * b) % m;
+    }
+    b = (b * b) % m;
+    e = Math.floor(e / 2);
+  }
+  return res;
+}
+
+document.getElementById("encryptButton").addEventListener("click", function() {
+  let algorithm = document.getElementById("algorithm").value;
+  let key = document.getElementById("key").value;
+  if (algorithm === "caesar") {
+    encryptCaesar(Number(key));
+  }
+  else if (algorithm === "vigenere") {
+    encryptVigenere(key);
+  }
+  else if (algorithm === "railfence") {
+    encryptRailFence(Number(key));
+  }
+  else if (algorithm === "hill") {
+    encryptHill(key);
+  }
+  else if (algorithm === "rsa") {
+    encryptRSA(JSON.parse(key));
+  }
+});
+
+document.getElementById("decryptButton").addEventListener("click", function() {
+  let algorithm = document.getElementById("algorithm").value;
+  let key = document.getElementById("key").value;
+  if (algorithm === "caesar") {
+    encryptCaesar(26 - Number(key));
+  }
+  else if (algorithm === "vigenere") {
+    encryptVigenere(key);
+  }
+  else {
+    alert("Decryption is not supported for this algorithm.");
+  }
+});
+
+document.getElementById("copyToClipboardButton").addEventListener("click", copyClipboard);
+
+document.getElementById("clearButton").addEventListener("click", clearFields);
+</script>
 
 </body>
 </html>
-
