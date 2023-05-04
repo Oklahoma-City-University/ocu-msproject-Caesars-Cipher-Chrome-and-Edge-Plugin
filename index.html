@@ -17,7 +17,9 @@
   <select id="algorithm">
     <option value="caesar">Caesar cipher</option>
     <option value="vigenere">Vigenère cipher</option>
-    <!-- add options for other algorithms here -->
+    <option value="railfence">Rail Fence cipher</option>
+    <option value="hill">Hill cipher</option>
+    <option value="rsa">RSA cipher</option>
   </select><br>
 
   <label for="key">Enter a key:</label>
@@ -31,11 +33,9 @@
   <label for="outputField">Encrypted/decrypted message:</label><br>
   <textarea id="outputField" rows="10"></textarea><br>
 
-  <footer>
-    <p>&copy; 2023 <a href="https://example.com/">Your Company Name</a>. All rights reserved. This is a project work for my MSc program at Oklahoma City University.</p>
-  </footer>
-
   <script>
+
+
     function encryptCaesar(key) {
       let alphabet = 'abcdefghijklmnopqrstuvwxyz';
       let alphabetCAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -59,158 +59,120 @@
     }
 
     function encryptVigenere(key) {
-  let alphabet = 'abcdefghijklmnopqrstuvwxyz';
-  let alphabetCAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      let alphabetCAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-  let user_input = document.getElementById("inputField").value;
-  let new_str = "";
-  let keyword = key.toLowerCase();
-  let keywordIndex = 0;
+      let user_input = document.getElementById("inputField").value;
+      let new_str = "";
+      let keyword = key.toLowerCase();
+      let keywordIndex = 0;
 
-  for (let i = 0; i < user_input.length; i++) {
-    let letter = user_input[i];
-    let keywordLetter = keyword[keywordIndex % keyword.length];
-    let shift = alphabet.indexOf(keywordLetter);
-    keywordIndex++;
+      for (let i = 0; i < user_input.length; i++) {
+        let letter = user_input[i];
+        let keywordLetter = keyword[keywordIndex % keyword.length];
+        let shift = alphabet.indexOf(keywordLetter);
+        keywordIndex++;
 
-    if (alphabet.includes(letter)) {
-      new_str += alphabet[((alphabet.indexOf(letter) + shift) % 26)];
-    }
-    else if (alphabetCAP.includes(letter)) {
-      new_str += alphabetCAP[((alphabetCAP.indexOf(letter) + shift) % 26)];
-    }
-    else {
-      new_str += letter;
-    }
-  }
-  document.getElementById("outputField").value = new_str;
-}
-
-function copyClipboard() {
-  navigator.clipboard.writeText(document.getElementById("outputField").value);
-}
-
-function clearFields() {
-  document.getElementById("inputField").value = "";
-  document.getElementById("outputField").value = "";
-}
-
-document.getElementById("encryptButton").addEventListener("click", function() {
-  let algorithm = document.getElementById("algorithm").value;
-  let key = document.getElementById("key").value;
-  if (algorithm === "caesar") {
-    encryptCaesar(Number(key));
-  }
-  else if (algorithm === "vigenere") {
-    encryptVigenere(key);
-  }
-});
-
-document.getElementById("decryptButton").addEventListener("click", function() {
-  let algorithm = document.getElementById("algorithm").value;
-  let key = document.getElementById("key").value;
-  if (algorithm === "caesar") {
-    encryptCaesar(26 - Number(key));
-  }
-  else if (algorithm === "vigenere") {
-    encryptVigenere(key);
-  }
-  else {
-    alert("Decryption is not supported for this algorithm.");
-  }
-});
-
-document.getElementById("copyToClipboardButton").addEventListener("click", copyClipboard);
-
-document.getElementById("clearButton").addEventListener("click", clearFields);
-
-
-<footer>
-  <p>&copy; 2023 <a href="https://example.com/">Your Company Name</a>. All rights reserved. This is a project work for my MSc program at Oklahoma City University.</p>
-</footer>
-
-<script>
-  function encryptRailFence(key) {
-    let user_input = document.getElementById("inputField").value;
-    let new_str = "";
-    let fence = [];
-    for (let i = 0; i < key; i++) {
-      fence.push([]);
-    }
-    let rail = 0;
-    let change = 1;
-    for (let i = 0; i < user_input.length; i++) {
-      fence[rail].push(user_input[i]);
-      rail += change;
-      if (rail === key - 1 || rail === 0) {
-        change = -change;
-      }
-    }
-    for (let i = 0; i < key; i++) {
-      for (let j = 0; j < fence[i].length; j++) {
-        new_str += fence[i][j];
-      }
-    }
-    document.getElementById("outputField").value = new_str;
-  }
-
-  function encryptHill(key) {
-    let user_input = document.getElementById("inputField").value;
-    let new_str = "";
-    let n = Math.sqrt(key.length);
-    let mat = [];
-    let tmp = [];
-    for (let i = 0; i < key.length; i++) {
-      tmp.push(key.charCodeAt(i) - 97);
-      if (tmp.length === n) {
-        mat.push(tmp);
-        tmp = [];
-      }
-    }
-    let user_tmp = [];
-    for (let i = 0; i < user_input.length; i++) {
-      if (user_input.charCodeAt(i) < 97 || user_input.charCodeAt(i) > 122) {
-        continue;
-      }
-      user_tmp.push(user_input.charCodeAt(i) - 97);
-      if (user_tmp.length === n) {
-        let res = [];
-        for (let j = 0; j < n; j++) {
-          let sum = 0;
-          for (let k = 0; k < n; k++) {
-            sum += mat[j][k] * user_tmp[k];
-          }
-          res.push(String.fromCharCode((sum % 26) + 97));
+        if (alphabet.includes(letter)) {
+          new_str += alphabet[((alphabet.indexOf(letter) + shift) % 26)];
         }
-        new_str += res.join("");
-        user_tmp = [];
+        else if (alphabetCAP.includes(letter)) {
+          new_str += alphabetCAP[((alphabetCAP.indexOf(letter) + shift) % 26)];
+        }
+        else {
+          new_str += letter;
+        }
       }
+      document.getElementById("outputField").value = new_str;
     }
-    document.getElementById("outputField").value = new_str;
-  }
 
-  function encryptRSA(key) {
-    let user_input = document.getElementById("inputField").value;
-    let new_str = "";
-    let p = key[0];
-    let q = key[1];
-    let n = p * q;
-    let tot = (p - 1) * (q - 1);
-    let e = 2;
-    while (e < tot) {
-      if (gcd(e, tot) === 1) {
-        break;
+    function encryptRailFence(key) {
+      let user_input = document.getElementById("inputField").value;
+      let new_str = "";
+      let fence = [];
+      for (let i = 0; i < key; i++) {
+        fence
+
+
+
+
+
+.push([]);
       }
-      e++;
+      let rail = 0;
+      let change = 1;
+      for (let i = 0; i < user_input.length; i++) {
+        fence[rail].push(user_input[i]);
+        rail += change;
+        if (rail === key - 1 || rail === 0) {
+          change = -change;
+        }
+      }
+      for (let i = 0; i < key; i++) {
+        for (let j = 0; j < fence[i].length; j++) {
+          new_str += fence[i][j];
+        }
+      }
+      document.getElementById("outputField").value = new_str;
     }
-    let d = modInverse(e, tot);
-    for (let i = 0; i < user_input.length; i++) {
-      let c = user_input.charCodeAt(i);
-      let m = powMod(c, e, n);
-      new_str += String.fromCharCode(m);
+
+    function encryptHill(key) {
+      let user_input = document.getElementById("inputField").value;
+      let new_str = "";
+      let n = Math.sqrt(key.length);
+      let mat = [];
+      let tmp = [];
+      for (let i = 0; i < key.length; i++) {
+        tmp.push(key.charCodeAt(i) - 97);
+        if (tmp.length === n) {
+          mat.push(tmp);
+          tmp = [];
+        }
+      }
+      let user_tmp = [];
+      for (let i = 0; i < user_input.length; i++) {
+        if (user_input.charCodeAt(i) < 97 || user_input.charCodeAt(i) > 122) {
+          continue;
+        }
+        user_tmp.push(user_input.charCodeAt(i) - 97);
+        if (user_tmp.length === n) {
+          let res = [];
+          for (let j = 0; j < n; j++) {
+            let sum = 0;
+            for (let k = 0; k < n; k++) {
+              sum += mat[j][k] * user_tmp[k];
+            }
+            res.push(String.fromCharCode((sum % 26) + 97));
+          }
+          new_str += res.join("");
+          user_tmp = [];
+        }
+      }
+      document.getElementById("outputField").value = new_str;
     }
-    document.getElementById("outputField").value = new_str;
-  }
+
+    function encryptRSA(key) {
+      let user_input = document.getElementById("inputField").value;
+      let new_str = "";
+      let p = key[0];
+      let q = key[1];
+      let n = p * q;
+      let tot = (p - 1) * (q - 1);
+      let e = 2;
+      while (e < tot) {
+        if (gcd(e, tot) === 1) {
+          break;
+        }
+        e++;
+      }
+      let d = modInverse(e, tot);
+      for (let i = 0; i < user_input.length; i++) {
+        let c = user_input.charCodeAt(i);
+        let m = powMod(c, e, n);
+        new_str += String.fromCharCode(m);
+      }
+      document.getElementById("outputField").value = new_str;
+    }
 
 function gcd(a, b) {
   if (b === 0) {
@@ -281,3 +243,4 @@ document.getElementById("clearButton").addEventListener("click", clearFields);
 
 </body>
 </html>
+
