@@ -13,14 +13,16 @@ Tasklist
 - [x] Ask the user to enter a plaintext message to be encoded. 
 - [x] Set the inputText variable to the answer from the user.
 - [x] Ask the user to enter a shift value for the shift cipher. If their answer is a number; Set the shiftValue variable to their answer.
-- [ ] Ask the user if they wish to encode or decode.
-- [ ] Then call a custom procedure to encrypt or decrypt the data. 
-- [ ] Check that my code works as expected.
-- [ ] Ensure my code wraps from z to a and keeps the same case.
-- [ ] Adding the Brute Force Mode to my code 
-- [ ] Package my code as a chrome extension
-- [ ] Create and add a Manifest.json file to my code
-- [ ] Use a google developer account to upload my project to the Chrome extension store - https://www.freecodecamp.org/news/building-chrome-extension/ 
-- [ ] Publish my project to the chrome web store for other cybersecurity enthusiasts to test, use and play with  - https://developer.chrome.com/docs/webstore/register/ 
+- [x] Ask the user if they wish to encode or decode.
+- [x] Then call a custom procedure to encrypt or decrypt the data. 
+- [x] Check that my code works as expected.
+- [x] Ensure my code wraps from z to a and keeps the same case.
+- [x] Adding the Brute Force Mode to my code 
+- [x] Package my code as a chrome extension
+- [x] Create and add a Manifest.json file to my code
+- [x] Use a google developer account to upload my project to the Chrome extension store - https://www.freecodecamp.org/news/building-chrome-extension/ 
+- [x] Publish my project to the chrome web store for other cybersecurity enthusiasts to test, use and play with  - https://developer.chrome.com/docs/webstore/register/ 
+- [x] Publish my project to the Resource Group  (CaesarsCipher-S01-Jake) i created on OKCU Azure portal fore students (the free tier subscription for students) for other cybersecurity enthusiasts to test, use and play with...it is currently publicly accessible at https://gray-forest-042c17010.3.azurestaticapps.net. 
 
-Watch this space!
+
+Wish me luck in my presentation tommorrow!
